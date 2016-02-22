@@ -24,19 +24,19 @@ all: testRunner
 endif
 
 ifeq ($(OS),Windows_NT)
-clean: 
+clean:
 	rm *.o testRunner.exe
 else
-clean: 
+clean:
 	rm *.o testRunner
 endif
 
 ifeq ($(OS),Windows_NT)
-testRunner.exe: gtest-all.o test_hw.o gtest_main.o
-	$(CXX) -o testRunner adt.o csString.o hashTable.o gtest-all.o test_adt.o gtest_main.o -lpthread
+testRunner.exe: gtest-all.o test_hw.o gtest_main.o binaryTree.o
+	$(CXX) -o testRunner gtest-all.o test_hw.o gtest_main.o binaryTree.o -lpthread
 else
-testRunner: gtest-all.o test_hw.o gtest_main.o
-	$(CXX) -o testRunner gtest-all.o test_hw.o gtest_main.o -lpthread
+testRunner: gtest-all.o test_hw.o gtest_main.o binaryTree.o
+	$(CXX) -o testRunner gtest-all.o test_hw.o gtest_main.o binaryTree.o -lpthread
 endif
 
 GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
@@ -50,3 +50,6 @@ test_hw.o: test_hw.cc
 
 gtest_main.o: gtest_main.cc
 	$(CXX) $(CPPFLAGS) -c gtest_main.cc -o gtest_main.o
+
+binaryTree.o: binaryTree.cc binaryTree.h
+	$(CXX) $(CXXFLAGS) -c binaryTree.cc -o binaryTree.o
