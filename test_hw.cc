@@ -3,9 +3,9 @@
 #include <string.h>
 
 TEST(TreeNodeTest, testConstructors){
-	TreeNode <int> node1 = new TreeNode(5);
-	TreeNode <int> node2 = new TreeNode(6);
-	TreeNode <int> node3 = new TreeNode<int>(7, node1, node2);
+	TreeNode <int> *node1 = new TreeNode<int>(5);
+	TreeNode <int> *node2 = new TreeNode<int>(6);
+	TreeNode <int> *node3 = new TreeNode<int>(7, node1, node2);
 
 	EXPECT_EQ(node1->value, 5);
 	EXPECT_EQ(node2->value, 6);

@@ -33,10 +33,10 @@ endif
 
 ifeq ($(OS),Windows_NT)
 testRunner.exe: gtest-all.o test_hw.o gtest_main.o binaryTree.o
-	$(CXX) -o testRunner gtest-all.o test_hw.o gtest_main.o binaryTree.o -lpthread
+	$(CXX) -o testRunner binaryTree.o gtest-all.o test_hw.o gtest_main.o -lpthread
 else
 testRunner: gtest-all.o test_hw.o gtest_main.o binaryTree.o
-	$(CXX) -o testRunner gtest-all.o test_hw.o gtest_main.o binaryTree.o -lpthread
+	$(CXX) -o testRunner binaryTree.o gtest-all.o test_hw.o gtest_main.o -lpthread
 endif
 
 GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
