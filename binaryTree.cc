@@ -14,4 +14,14 @@ TreeNode<T>::TreeNode(T newValue, TreeNode<T> *leftNode, TreeNode<T> *rightNode)
 	this->right = rightNode;
 }
 
+template <typename T>
+BinaryTree<T>::BinaryTree(TreeNode<T> * aNode){
+	this->root = aNode;
+}
+
+template <typename T>
+bool BinaryTree<T>::isEmpty(){
+	return !this->root;
+}
+
 #include "binaryTreeConfig.h"

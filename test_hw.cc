@@ -13,3 +13,25 @@ TEST(TreeNodeTest, testConstructors){
 	EXPECT_EQ(node3->left, node1);
 	EXPECT_EQ(node3->right, node2);
 }
+
+TEST(BinaryTreeTest, testConstructor){
+	BinaryTree<int> *aTree = new BinaryTree<int>(nullptr);
+	EXPECT_TRUE(aTree->isEmpty());
+}
+
+TEST(BinaryTreeTest, testHeight){
+	EXPECT_TRUE(false);
+}
+
+TEST(BinaryTreeTest, testPostOrder){
+	EXPECT_TRUE(false);
+}
+
+TEST(BinaryTreeTest, testPreOrder){
+	EXPECT_TRUE(false);
+}
+
+TEST(BinaryTreeTest, testInOrder){
+	EXPECT_TRUE(false);
+}
+

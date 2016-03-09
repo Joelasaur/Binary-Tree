@@ -19,9 +19,11 @@ class BinaryTree{
 private:
 	TreeNode<T> *root;
 public:
+	BinaryTree(TreeNode<T> *aNode);
+	bool isEmpty();
 	int height(void);
-	void preOrder(pfnv visitor);
-	void inOrder(pfnv visitor);
-	void postOrder(pfnv visitor);
+	void preOrder(pfnv<T> visitor);
+	void inOrder(pfnv<T> visitor);
+	void postOrder(pfnv<T> visitor);
 };
 #endif
