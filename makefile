@@ -11,8 +11,8 @@ GTEST_INC_DIR=$(GTEST_DIR)/include
 CFLAGS=-g -std=c99 -I$(GTEST_INC_DIR)
 
 
-CPPFLAGS += -g -Wall -isystem $(GTEST_INC_DIR)
-CXXFLAGS += -Wextra -pthread
+CPPFLAGS += -std=c++11 -g -Wall -isystem $(GTEST_INC_DIR)
+CXXFLAGS += -std=c++11 -Wextra -pthread
 
 GTEST_HEADERS = $(GTEST_INC_DIR)/gtest/*.h \
                 $(GTEST_INC_DIR)/gtest/internal/*.h

@@ -14,13 +14,21 @@ TEST(TreeNodeTest, testConstructors){
 	EXPECT_EQ(node3->right, node2);
 }
 
+int treeSpec[]={1,2,-3,1,-4,0};
+BinaryTree<int>* treeBuilder(int* treeData){
+	std::stack<TreeNode<int> *> nodeStack; 
+
+} 
+
 TEST(BinaryTreeTest, testConstructor){
 	BinaryTree<int> *aTree = new BinaryTree<int>(nullptr);
 	EXPECT_TRUE(aTree->isEmpty());
 }
 
+
 TEST(BinaryTreeTest, testHeight){
-	EXPECT_TRUE(false);
+        BinaryTree<int> *aTree = new BinaryTree<int>(nullptr);
+	EXPECT_EQ(aTree->height(),0);
 }
 
 TEST(BinaryTreeTest, testPostOrder){
@@ -34,4 +42,5 @@ TEST(BinaryTreeTest, testPreOrder){
 TEST(BinaryTreeTest, testInOrder){
 	EXPECT_TRUE(false);
 }
+
 
