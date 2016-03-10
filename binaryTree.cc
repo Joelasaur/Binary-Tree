@@ -24,4 +24,9 @@ bool BinaryTree<T>::isEmpty(){
 	return !this->root;
 }
 
+template <typename T>
+int BinaryTree<T>::height(){
+        return 0;
+}
+
 #include "binaryTreeConfig.h"
