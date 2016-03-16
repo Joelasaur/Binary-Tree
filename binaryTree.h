@@ -18,6 +18,7 @@ template <typename T>
 class BinaryTree{
 private:
 	TreeNode<T> *root;
+	int heightHelper(TreeNode<T>* aNode);
 public:
 	BinaryTree(TreeNode<T> *aNode);
 	bool isEmpty();

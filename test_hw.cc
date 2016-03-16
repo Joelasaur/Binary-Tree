@@ -1,6 +1,7 @@
 #include "gtest/gtest.h"
 #include "binaryTree.h"
 #include <string.h>
+#include <stack>
 
 TEST(TreeNodeTest, testConstructors){
 	TreeNode <int> *node1 = new TreeNode<int>(5);
@@ -16,19 +17,39 @@ TEST(TreeNodeTest, testConstructors){
 
 int treeSpec[]={1,2,-3,1,-4,0};
 BinaryTree<int>* treeBuilder(int* treeData){
-	std::stack<TreeNode<int> *> nodeStack; 
-
-} 
+	std::stack<TreeNode<int> *> nodeStack;
+	int* nextIntRef = treeData;
+	while(*nextIntRef != 0){
+		TreeNode<int> *node;
+		if(*nextIntRef > 0){
+			node = new TreeNode<int>(*nextIntRef);
+		}
+		else{
+			TreeNode<int> *right = nodeStack.top();
+			nodeStack.pop();
+			TreeNode<int> *left = nodeStack.top();
+			nodeStack.pop();
+			node = new TreeNode<int>(*nextIntRef, left, right);
+		}
+		nodeStack.push(node);
+		nextIntRef++;
+	}
+	return new BinaryTree<int> (nodeStack.top());
+}
 
 TEST(BinaryTreeTest, testConstructor){
 	BinaryTree<int> *aTree = new BinaryTree<int>(nullptr);
 	EXPECT_TRUE(aTree->isEmpty());
+	aTree = treeBuilder(treeSpec);
+	EXPECT_FALSE(aTree->isEmpty());
 }
 
 
 TEST(BinaryTreeTest, testHeight){
-        BinaryTree<int> *aTree = new BinaryTree<int>(nullptr);
+  BinaryTree<int> *aTree = new BinaryTree<int>(nullptr);
 	EXPECT_EQ(aTree->height(),0);
+	aTree = treeBuilder(treeSpec);
+	EXPECT_EQ(aTree->height(),3);
 }
 
 TEST(BinaryTreeTest, testPostOrder){
@@ -42,5 +63,3 @@ TEST(BinaryTreeTest, testPreOrder){
 TEST(BinaryTreeTest, testInOrder){
 	EXPECT_TRUE(false);
 }
-
-

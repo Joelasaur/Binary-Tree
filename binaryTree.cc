@@ -24,9 +24,23 @@ bool BinaryTree<T>::isEmpty(){
 	return !this->root;
 }
 
+template<typename T>
+int BinaryTree<T>::heightHelper(TreeNode<T>* aNode){
+	if(aNode == nullptr){
+		return 0;
+	}
+	else{
+		int leftHeight = heightHelper(aNode->left);
+		int rightHeight= heightHelper(aNode->right);
+		return leftHeight > rightHeight
+			? leftHeight+1
+			: rightHeight+1;
+	}
+}
+
 template <typename T>
 int BinaryTree<T>::height(){
-        return 0;
+	return heightHelper(this->root);
 }
 
 #include "binaryTreeConfig.h"
