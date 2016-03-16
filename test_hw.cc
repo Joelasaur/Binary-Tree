@@ -15,7 +15,7 @@ TEST(TreeNodeTest, testConstructors){
 	EXPECT_EQ(node3->right, node2);
 }
 
-int treeSpec[]={1,2,-3,1,-4,0};
+int treeSpec[]={1,2,-3,9,-4,0};
 BinaryTree<int>* treeBuilder(int* treeData){
 	std::stack<TreeNode<int> *> nodeStack;
 	int* nextIntRef = treeData;
@@ -52,14 +52,42 @@ TEST(BinaryTreeTest, testHeight){
 	EXPECT_EQ(aTree->height(),3);
 }
 
+static int visitedNodes[5];
+static int index;
+void visitNode(TreeNode<int>* aNode){
+	visitedNodes[index] = aNode->value;
+	index++;
+}
+
 TEST(BinaryTreeTest, testPostOrder){
-	EXPECT_TRUE(false);
+	index = 0;
+	BinaryTree<int> *aTree = treeBuilder(treeSpec);
+	aTree->postOrder(visitNode);
+	EXPECT_EQ(visitedNodes[0],1);
+	EXPECT_EQ(visitedNodes[1],2);
+	EXPECT_EQ(visitedNodes[2],-3);
+	EXPECT_EQ(visitedNodes[3],9);
+	EXPECT_EQ(visitedNodes[4],-4);
 }
 
 TEST(BinaryTreeTest, testPreOrder){
-	EXPECT_TRUE(false);
+	index = 0;
+	BinaryTree<int> *aTree = treeBuilder(treeSpec);
+	aTree->preOrder(visitNode);
+	EXPECT_EQ(visitedNodes[0],-4);
+	EXPECT_EQ(visitedNodes[1],-3);
+	EXPECT_EQ(visitedNodes[2],1);
+	EXPECT_EQ(visitedNodes[3],2);
+	EXPECT_EQ(visitedNodes[4],9);
 }
 
 TEST(BinaryTreeTest, testInOrder){
-	EXPECT_TRUE(false);
+	index = 0;
+	BinaryTree<int> *aTree = treeBuilder(treeSpec);
+	aTree->inOrder(visitNode);
+	EXPECT_EQ(visitedNodes[0],1);
+	EXPECT_EQ(visitedNodes[1],-3);
+	EXPECT_EQ(visitedNodes[2],2);
+	EXPECT_EQ(visitedNodes[3],-4);
+	EXPECT_EQ(visitedNodes[4],9);
 }
